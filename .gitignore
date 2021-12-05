@@ -2,3 +2,5 @@
 allure-results/
 allure-report/
 target/
+FailedTestsScreenshots/
+test-output/

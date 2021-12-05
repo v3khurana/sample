@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.Sidebar;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import java.util.HashMap;
@@ -52,7 +53,7 @@ public class CandidateList extends Sidebar implements FilterTable{
         //navigateToJobDetails(jobTitle, status, "");
     }
 
-    public static void navigateToJobDetails(){
+    public static void navigateToJobDetails() throws InterruptedException {
         //driver.findElement(By.xpath("(//table[contains(@class,'cloned')]/tbody/tr[vms-row[2]/td/span])[1]/vms-row[1]//p/a")).click();
         FilterTable.navigateToFirstItemInList();
     }
@@ -107,5 +108,10 @@ public class CandidateList extends Sidebar implements FilterTable{
     public void verifyHighlightingOfTabs(String tabName){}
 
     public void moveColumnBetween(String colName, String leftCol, String rightCol){}
+
+    public static void searchByNameOrId(String candidateName) throws InterruptedException {
+        driver.findElement(By.xpath("//div[contains(@class,'search-head')]/input[@placeholder='Search By Name or ID']")).sendKeys(candidateName+ Keys.ENTER);
+        Thread.sleep(10000);
+    }
 }
 

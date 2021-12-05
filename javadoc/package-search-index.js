@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.example"},{"l":"org.example.assignment"},{"l":"org.example.candidate"},{"l":"org.example.dashboard"},{"l":"org.example.job"},{"l":"org.example.programs"}]

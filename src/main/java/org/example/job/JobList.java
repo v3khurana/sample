@@ -3,6 +3,7 @@ package org.example.job;
 import org.example.Sidebar;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import java.util.HashMap;
@@ -23,6 +24,11 @@ public class JobList extends Sidebar implements FilterTable{
         driver.findElement(By.xpath("//button[@type='submit'][normalize-space(text())='Apply']")).click();
     }
 
+    public static void searchByJobTitleOrJobId(String jobTitle) throws InterruptedException {
+        driver.findElement(By.xpath("//div[contains(@class,'search-head')]/input[@placeholder='Search by JOB TITLE or JOB ID.']")).sendKeys(jobTitle+ Keys.ENTER);
+        Thread.sleep(9000);
+    }
+
     /*
     public static void removeActiveFilters() throws InterruptedException {
         driver.findElement(By.xpath("//a[@class='clear-filter']")).click();
@@ -37,9 +43,10 @@ public class JobList extends Sidebar implements FilterTable{
         //navigateToJobDetails(jobTitle, status, "");
     }
 
-    public static void navigateToJobDetails(){
+    public static void navigateToJobDetails() throws InterruptedException {
         //driver.findElement(By.xpath("(//table[contains(@class,'cloned')]/tbody/tr[vms-row[2]/td/span])[1]/vms-row[1]//p/a")).click();
         FilterTable.navigateToFirstItemInList();
+        Thread.sleep(10000);
     }
 
     public static void navigateToJobDetails(String status){

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/VarunKhurana/qa/trial1">
+        <classes>
+            <!--<class name="org.example.AppTes2">
+                <methods>
+                    <include name="shouldAnswerWithTrue"/>
+                    <include name="shouldAnswerWithTrue1"/>
+                    <include name="shouldAnswerWithTrue2"/>
+                    <include name="createJob"/>
+                    <include name="approveJob_JobMnaager"/>
+                    <include name="job6"/>
+                </methods>
+            </class>-->
+            <!--<class name="org.example.AppTest">
+                <methods>
+                    <include name="shouldAnswerWithTrue"/>
+                    <include name="shouldAnswerWithTrue1"/>
+                    <include name="shouldAnswerWithTrue2"/>
+                    <include name="createJob"/>
+                    <include name="approveJob_JobMnaager"/>
+                    <include name="job8"/>
+                </methods>
+            </class>
+            <class name="org.example.AppTest1">
+                <methods>
+                    <include name="createNewJob1"/>
+                    <include name="jobApproval"/>
+                    <include name="distributeJob"/>
+                    <include name="submitCandidate"/>
+                    <include name="shortlistCandidate"/>
+                    <include name="createOffer"/>
+                    <include name="offerApproval"/>
+                    <include name="acceptOffer"/>
+                </methods>
+            </class>
+            <class name="org.example.Job5">
+                <methods>
+                    <include name="createNewJob1"/>
+                    <include name="jobApproval"/>
+                    <include name="distributeJob"/>
+                    <include name="createCandidates"/>
+                    <include name="submitCandidates"/>
+                    <include name="shortlistCandidates"/>
+                    <include name="interviewCandidates"/>
+                    <include name="acceptInterviews"/>
+                </methods>
+            </class>-->
+            <class name="org.example.Job5_1">
+                <methods>
+                    <include name="createNewJob1"/>
+                    <include name="jobApproval"/>
+                    <include name="distributeJob"/>
+                    <include name="createCandidate"/>
+                    <include name="submitCandidate"/>
+                    <include name="shortlistCandidate"/>
+                    <include name="interviewCandidate"/>
+                    <include name="acceptInterview"/>
+                    <include name="markInterviewAsCompleted"/>
+                    <include name="createOffer"/>
+                    <include name="offerApproval"/>
+                    <include name="acceptOffer"/>
+                    <include name="enterTimesheet"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

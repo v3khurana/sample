@@ -16,6 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <exec.mainClass>org.example.Program</exec.mainClass>
   </properties>
 
   <dependencies>
@@ -52,6 +53,23 @@
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-testng</artifactId>
       <version>2.15.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.creditdatamw.labs/zerocell-core -->
+    <dependency>
+      <groupId>com.creditdatamw.labs</groupId>
+      <artifactId>zerocell-core</artifactId>
+      <version>0.4.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.aventstack</groupId>
+      <artifactId>extentreports</artifactId>
+      <version>5.0.9</version>
     </dependency>
   </dependencies>
 
@@ -106,6 +124,26 @@
         <configuration>
           <source>8</source>
           <target>8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.1</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <outputDirectory>${project.build.directory}/lib</outputDirectory>
+          <overWriteReleases>false</overWriteReleases>
+          <overWriteSnapshots>false</overWriteSnapshots>
+          <overWriteIfNewer>true</overWriteIfNewer>
         </configuration>
       </plugin>
     </plugins>
