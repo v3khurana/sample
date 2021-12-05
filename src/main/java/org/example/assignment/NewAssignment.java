@@ -43,7 +43,7 @@ public class NewAssignment extends Sidebar {
 
     public void createCandidate(String firstName, String lastName, String emailAddr){
         driver.findElement(By.xpath("//div[contains(@class,'form-group')]//button[normalize-space(text())='Create Candidate']")).click();
-        NewCandidate.enterCandidateInfo(firstName, lastName, emailAddr);
+        //NewCandidate.enterCandidateInfo(firstName, lastName, emailAddr);
     }
 
     private static void selectData(String label, String data) throws InterruptedException {
