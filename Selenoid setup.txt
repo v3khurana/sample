@@ -1,0 +1,96 @@
+Install Docker on CentOS8
+
+sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+
+
+sudo yum install -y yum-utils
+
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+sudo yum install docker-ce docker-ce-cli containerd.io
+
+sudo systemctl start docker
+
+
+
+
+Install selenoid
+
+1. Download config manager
+
+chmod +x cm
+
+./cm selenoid start --vnc
+
+./cm selenoid-ui start
+
+./cm_linux_amd64 selenoid start --vnc --port 4445
+docker run -d --name selenoid-ui -p 8080:8080 aerokube/selenoid-ui --selenoid-uri http://192.168.213.40:4445
+
+To be changed to below command when ggr-ui is used
+docker run -d --name selenoid-ui -p 8080:8080 aerokube/selenoid-ui --selenoid-uri http://192.168.213.40:4445 --webdriver-uri http://192.168.213.40:4444 --status-uri http://192.168.213.40:8888
+docker run -d --name selenoid-ui -p 8080:8080 aerokube/selenoid-ui --selenoid-uri http://192.168.213.40:4445
+docker run -d --name selenoid-ui -p 8080:8080 aerokube/selenoid-ui --selenoid-uri http://192.168.213.40:8888
+
+
+Install GGR - Port of selenoid will have to be changed for GGR to use port 4444
+
+yum install httpd-tools
+
+Verify if httpd-tools installed,
+htpasswd -h
+
+mkdir -p /etc/grid-router/quota
+
+htpasswd -bc /etc/grid-router/users.htpasswd test test-password
+
+cat /etc/grid-router/quota/test.xml
+<qa:browsers xmlns:qa="urn:config.gridrouter.qatools.ru">
+<browser name="chrome" defaultVersion="96.0">
+    <version number="96.0">
+        <region name="1">
+            <host name="192.168.213.40" port="4445" count="1"/>
+            <host name="192.168.133.146" port="4445" count="1"/>
+            <host name="192.168.133.167" port="4445" count="1"/>
+        </region>
+    </version>
+</browser>
+</qa:browsers>
+
+docker run -d --name \
+    ggr -v /etc/grid-router/:/etc/grid-router:ro \
+    --net host aerokube/ggr:latest-release
+
+
+docker run -d --name ggr-ui -p 8888:8888 -v /etc/grid-router/quota:/etc/grid-router/quota:ro aerokube/ggr-ui:latest-release
+
+
+
+
+
+
+./cm_linux_amd64 selenoid start --vnc --port 4445
+
+./cm_linux_amd64 selenoid-ui start
+
+docker run -d --name     ggr -v /etc/grid-router/:/etc/grid-router:ro     --net host aerokube/ggr:latest-release
+
+
+
+docker run -d --name ggr-ui -p 8888:8888 -v /path/to/quota/dir:/etc/grid-router/quota:ro aerokube/ggr-ui:latest-release
+
+docker run -d --name selenoid-ui -p 8080:8080 aerokube/selenoid-ui --selenoid-uri http://172.19.0.1:8888
+
+
+
+
+Linux li-vms-search-1.simplifyvms.info 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux

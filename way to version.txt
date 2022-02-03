@@ -1,0 +1,7 @@
+v - Version or any meaningful initial
+
+2 - Application Major Release Number
+
+5 - Sprint Number
+
+45 - Build/Deployment/Service Number

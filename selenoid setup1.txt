@@ -1,0 +1,77 @@
+Install Docker on CentOS8
+
+sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+
+
+sudo yum install -y yum-utils
+
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+sudo yum install docker-ce docker-ce-cli containerd.io
+
+sudo systemctl start docker
+
+
+
+
+Install selenoid
+
+1. Download config manager
+
+chmod +x cm
+
+-> Remove configuration directory if selenoid was already downloaded and then only containers removed for re-installation
+./cm_linux_amd64 selenoid cleanup
+
+-> Command to run selenoid with 3 browsers and only last recent version with timeout as 5 min (time interval between 2 http requests)
+./cm_linux_amd64 selenoid start --vnc --port 4445 --last-versions 1 -g "-timeout 5m" -g "-limit 3"
+./cm_linux_amd64 selenoid start --vnc --port 4445 -g "-timeout 5m"
+./cm_linux_amd64 selenoid start --vnc --port 4445 -g "-timeout 5m" -e OVERRIDE_VIDEO_OUTPUT_DIR=/opt/selenoid/video/
+
+If --last-versions is not included then last 2 recent versions will be configured
+
+-> Command to run selenoid-uri when selenoid is configured on port 4445 (default 4444)
+docker run -d --name selenoid-ui -p 8080:8080 aerokube/selenoid-ui --selenoid-uri http://192.168.213.40:4445
+To connect selenoid-ui with ggr-ui, change the port to ggr-ui i.e 8888, so run command
+docker run -d --name selenoid-ui -p 8080:8080 aerokube/selenoid-ui --selenoid-uri http://192.168.213.40:8888
+
+Selenoid-uri listens on default port 8080, can be configured to different port with --port 8081
+
+-> Send Request to 
+driver = new RemoteWebDriver(
+                    URI.create("http://192.168.213.40:4445/wd/hub").toURL(),
+                    chromeOptions);
+
+-> To send request for a specific browser version
+ChromeOptions chromeOptions = new ChromeOptions();
+chromeOptions.setCapability("browserName", "chrome");
+chromeOptions.setCapability("browserVersion", "97.0");
+
+To install ggr
+(Command not working)
+docker run -d --name \
+    ggr -v /etc/grid-router/:/etc/grid-router:ro \
+    --net host aerokube/ggr:latest-release
+
+(Command working)
+docker run -d --name \
+    ggr -v /etc/grid-router:/etc/grid-router:ro \
+    -p 4444:4444 aerokube/ggr:latest-release
+
+To install ggr-ui
+docker run -d --name ggr-ui -p 8888:8888 -v /etc/grid-router/quota:/etc/grid-router/quota:ro aerokube/ggr-ui:latest-release
+
+
+
+
+
+

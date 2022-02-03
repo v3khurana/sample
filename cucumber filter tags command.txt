@@ -1,0 +1,16 @@
+test -Dcucumber.filter.tags="@{Job}"
+test -Dcucumber.filter.tags="@${Job}"
+
+Report/*.html
+
+
+reduction in time with more parallelism
+robust xpaths for locating elements
+
+
+data = JSON.parse(body.toString())["token"];
+
+
+dev-13167485.okta.com
+
+mvn test -Dcucumber.filter.tags="@trial"

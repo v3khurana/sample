@@ -1,0 +1,22 @@
+import java.util.Scanner;
+import java.util.regex;
+class UsernameValidator {
+    /*
+     * Write regular expression here.
+     */
+    public static final String regularExpression = null;
+    Pattern pt = Pattern.compile("^[a-zA-Z][a-zA-Z_1-9]+$");
+    
+    public static boolean verifyMatch(String s){
+        boolean returnVal = false;
+        if(s.length()>8 && s.length()<30){
+            if(pt.matcher(s).matches())
+                returnVal = true;
+        }
+        return returnVal;
+    }
+    
+}
+
+
+

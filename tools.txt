@@ -1,0 +1,7 @@
+winscp
+kdiff
+ZA_Connect
+OpenVPN
+Speccy
+Hashicorp Vault
+Github desktop
